@@ -13,9 +13,9 @@ html
           h1 Luis Chapman
           h4 Email: <a href="mailto:Luis@lmc-productions.com">Luis@lmc-productions.com</a>
           p(style="padding-top: 20px") Or contact me:
-          form.search
-            input(type="text")
-            button(type="submit") Message Me
+          form.search(id="email" @submit="sendEmail" @submit.prevent)
+            input(type="text" v-model="emailText")
+            button(type="button" @click="sendEmail") Message Me
 
       //for blurred background
       div(style="display: none;")
