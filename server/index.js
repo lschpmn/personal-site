@@ -44,3 +44,11 @@ server.post('/api/email', (req, res) => {
 });
 
 server.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+
+//environment warnings
+if(!process.env.user || !process.env.pass || !process.env.to) {
+  if(!process.env.user) console.error('Environment variable user not set!');
+  if(!process.env.pass) console.error('Environment variable pass not set!');
+  if(!process.env.to) console.error('Environment variable to not set!');
+  process.exit(1);
+}
