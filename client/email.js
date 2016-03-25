@@ -6,7 +6,8 @@ const axios = require('axios');
 const emailVue = new vue({
   el: '#email',
   data: {
-    emailText: ''
+    emailText: '',
+    submitText: 'Message Me'
   },
   methods: {
     sendEmail: function sendEmail() {
