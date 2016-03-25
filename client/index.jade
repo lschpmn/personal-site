@@ -17,6 +17,7 @@ html
             a(href="https://github.com/lschpmn") https://github.com/lschpmn
           p(style="padding-top: 20px") Or contact me:
           form.search(id="email" @submit="sendEmail" @submit.prevent)
+            .error {{error}}
             input(type="text" v-model="emailText")
             button(type="button" @click="sendEmail") {{submitText}}
 

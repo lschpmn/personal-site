@@ -3,11 +3,14 @@
 const vue = /**@type {Vue}*/ require('vue');
 const axios = require('axios');
 
+localStorage.removeItem('sentEmail');
+
 const emailVue = new vue({
   el: '#email',
   data: {
     emailText: '',
-    submitText: 'Message Me'
+    submitText: 'Message Me',
+    error: ''
   },
   methods: {
     sendEmail: function sendEmail() {
@@ -17,7 +20,11 @@ const emailVue = new vue({
   
       axios.post('/api/email', {email: emailVue.emailText})
         .then(res => emailVue.submitText = 'Thank You!')
-        .catch(err => console.log(err.stack));
+        .catch(err => {
+          localStorage.removeItem('sentEmail');
+          if(err.status === 404) emailVue.error = `Server couldn't be reached`; 
+          else emailVue.error = 'Something went wrong'
+        });
     }
   }
 });
