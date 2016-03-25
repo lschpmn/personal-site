@@ -16,6 +16,11 @@ const transporter = nodemailer.createTransport({
 
 server.use(restify.CORS());
 server.use(restify.bodyParser());
+server.use(restify.throttle({
+  ip: true,
+  rate: 1,
+  burst: 1
+}));
 
 server.post('/api/email', (req, res) => {
   console.log(req.body);
