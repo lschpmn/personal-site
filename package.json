@@ -24,6 +24,7 @@
     "webpack": "^1.12.14"
   },
   "dependencies": {
+    "nodemailer": "^2.3.0",
     "restify": "^4.0.4"
   }
 }
