@@ -3,7 +3,7 @@
 const restify = /**@type {restify}*/ require('restify');
 const nodemailer = require('nodemailer');
 const server = restify.createServer();
-const PORT = 5001;
+const PORT = process.env.serverPort;
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 465,
