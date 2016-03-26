@@ -5,9 +5,9 @@ const nodemailer = require('nodemailer');
 const server = restify.createServer();
 const PORT = process.env.serverPort;
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
+  host: 'smtp.zoho.com',
   port: 465,
-  secure: true, // use SSL
+  secure: true,
   auth: {
     user: process.env.user,
     pass: process.env.pass
@@ -27,6 +27,7 @@ server.post('/api/email', (req, res) => {
 
   const email = {
     to: process.env.to,
+    from: process.env.user,
     subject: 'Email from Personal Site',
     text: `Message from Personal Site:\n\n\n ${req.body.email}`
   };
