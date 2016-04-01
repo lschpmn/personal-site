@@ -2,9 +2,13 @@
 
 const restify = /**@type {restify}*/ require('restify');
 const nodemailer = require('nodemailer');
+const Log = require('./util/Log');
+const logger = new Log(__filename);
 const server = restify.createServer();
 const PORT = process.env.serverPort;
-const transporter = nodemailer.createTransport({
+let transporter;
+
+transporter = nodemailer.createTransport({
   host: 'smtp.zoho.com',
   port: 465,
   secure: true,
@@ -23,7 +27,7 @@ server.use(restify.throttle({
 }));
 
 server.post('/api/email', (req, res) => {
-  console.log(req.body);
+  logger.info(req.body);
 
   const email = {
     to: process.env.to,
@@ -34,22 +38,23 @@ server.post('/api/email', (req, res) => {
 
   transporter.sendMail(email, (err, info) => {
     if(err) {
-      console.error('Error sending email');
-      console.error(err.stack);
+      logger.error('Error sending email');
+      logger.error(err.stack);
       return res.send(500);
     }
 
-    console.log('Successfully sent Email');
+    logger.info('Successfully sent Email');
     res.send(200);
   });
 });
 
-server.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+server.listen(PORT, () => logger.info(`Server listening on port ${PORT}`));
 
 //environment warnings
 if(!process.env.user || !process.env.pass || !process.env.to) {
-  if(!process.env.user) console.error('Environment variable user not set!');
-  if(!process.env.pass) console.error('Environment variable pass not set!');
-  if(!process.env.to) console.error('Environment variable to not set!');
+  if(!process.env.user) logger.error('Environment variable "user" not set!');
+  if(!process.env.pass) logger.error('Environment variable "pass" not set!');
+  if(!process.env.to) logger.error('Environment variable "to" not set!');
+  if(!process.env.serverPort) logger.error('Environment variable "serverPort" not set!');
   process.exit(1);
 }
