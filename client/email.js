@@ -19,7 +19,10 @@ const emailVue = new vue({
       localStorage.setItem('sentEmail', true);
   
       axios.post('/api/email', {email: emailVue.emailText})
-        .then(res => emailVue.submitText = 'Thank You!')
+        .then(() => {
+          emailVue.submitText = 'Thank You!';
+          emailVue.error = '';
+        })
         .catch(err => {
           localStorage.removeItem('sentEmail');
           if(err.status === 404) emailVue.error = `Server couldn't be reached`; 
