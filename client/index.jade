@@ -2,7 +2,7 @@ doctype html
 html
   head
     meta(charset='UTF-8', name='viewport', content='width=device-width, initial-scale=1')
-    title Personal Site
+    title The Chapman Site
 
     body
       .background
@@ -13,7 +13,7 @@ html
           h1 Luis Chapman
           
           h4 Email: 
-            a(href="mailto:Luis@lmc-productions.com") Luis@lmc-productions.com
+            a(href="mailto:luis@thechapman.site") Luis@TheChapman.site
             
           h4 Github: 
             a(href="https://github.com/lschpmn") https://github.com/lschpmn
@@ -26,17 +26,21 @@ html
             input(type="text" v-model="emailText")
             
             button(type="button" @click="sendEmail") {{submitText}}
-
-      //for blurred background
-      div(style="display: none;")
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <filter id="svgfilter">
-        <feGaussianBlur stdDeviation="3" />
-        <feComponentTransfer>
-        <feFuncR type="linear" slope="0.6"/>
-        <feFuncG type="linear" slope="0.6"/>
-        <feFuncB type="linear" slope="0.6"/>
-        </feComponentTransfer>
-        </filter>
-        </svg>
+            
+        .spacer
+          
+      //message for users with out dated browsers
+      script.
+        var $buoop = {c: 2};
+        function $buo_f(){
+          var e = document.createElement("script");
+          e.src = "//browser-update.org/update.min.js";
+          document.body.appendChild(e);
+        };
+        try{
+          document.addEventListener("DOMContentLoaded", $buo_f, false)
+        }
+        catch(e){
+          window.attachEvent("onload", $buo_f)
+        }
       script(src='dep.js')

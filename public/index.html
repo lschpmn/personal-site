@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <title>Personal Site</title>
+    <title>The Chapman Site</title>
     <body>
       <div class="background">
         <div class="image"></div>
@@ -10,7 +10,7 @@
       <main>
         <div class="box">
           <h1>Luis Chapman</h1>
-          <h4>Email: <a href="mailto:Luis@lmc-productions.com">Luis@lmc-productions.com</a></h4>
+          <h4>Email: <a href="mailto:luis@thechapman.site">Luis@TheChapman.site</a></h4>
           <h4>Github: <a href="https://github.com/lschpmn">https://github.com/lschpmn</a></h4>
           <p style="padding-top: 20px">Or contact me:</p>
           <form id="email" @submit="sendEmail" @submit.prevent class="search">
@@ -19,20 +19,23 @@
             <button type="button" @click="sendEmail">{{submitText}}</button>
           </form>
         </div>
+        <div class="spacer"></div>
       </main>
-      <!--for blurred background-->
-      <div style="display: none;">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <filter id="svgfilter">
-        <feGaussianBlur stdDeviation="3" />
-        <feComponentTransfer>
-        <feFuncR type="linear" slope="0.6"/>
-        <feFuncG type="linear" slope="0.6"/>
-        <feFuncB type="linear" slope="0.6"/>
-        </feComponentTransfer>
-        </filter>
-        </svg>
-      </div>
+      <!--message for users with out dated browsers-->
+      <script>
+        var $buoop = {c: 2};
+        function $buo_f(){
+          var e = document.createElement("script");
+          e.src = "//browser-update.org/update.min.js";
+          document.body.appendChild(e);
+        };
+        try{
+          document.addEventListener("DOMContentLoaded", $buo_f, false)
+        }
+        catch(e){
+          window.attachEvent("onload", $buo_f)
+        }
+      </script>
       <script src="dep.js"></script>
     </body>
   </head>
